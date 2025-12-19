@@ -1266,12 +1266,6 @@ p {
 	gap: 3rem;
 	align-items: flex-start;
 	margin-bottom: 2rem;
-	opacity: 0;
-	transform: translateY(20px);
-	transition: all 0.6s ease;
-}
-
-.solution-section.visible {
 	opacity: 1;
 	transform: translateY(0);
 }
