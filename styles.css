@@ -373,6 +373,177 @@ p {
 }
 
 /* ========================================
+   Modal
+   ======================================== */
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 2000;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.5);
+	backdrop-filter: blur(4px);
+	opacity: 0;
+	transition: opacity 0.3s ease;
+}
+
+.modal.active {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 1;
+}
+
+.modal-content {
+	background-color: var(--white);
+	margin: auto;
+	padding: 2.5rem;
+	border-radius: 16px;
+	width: 90%;
+	max-width: 540px;
+	box-shadow: var(--shadow-xl);
+	position: relative;
+	transform: scale(0.9);
+	transition: transform 0.3s ease;
+	max-height: 95vh;
+	overflow-y: auto;
+}
+
+.modal.active .modal-content {
+	transform: scale(1);
+}
+
+.modal-close {
+	color: var(--gray-400);
+	float: right;
+	font-size: 2rem;
+	font-weight: 300;
+	line-height: 1;
+	cursor: pointer;
+	position: absolute;
+	right: 1.5rem;
+	top: 1.5rem;
+	transition: color 0.2s ease;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+	color: var(--navy);
+}
+
+.modal-content h2 {
+	margin-bottom: 1.5rem;
+	font-size: 2rem;
+}
+
+/* Form Styles */
+.form-group {
+	margin-bottom: 1.25rem;
+}
+
+.form-group label {
+	display: block;
+	margin-bottom: 0.5rem;
+	font-weight: 600;
+	color: var(--navy);
+	font-size: 0.9375rem;
+}
+
+.form-group input,
+.form-group select {
+	width: 100%;
+	padding: 0.875rem 1rem;
+	border: 2px solid var(--gray-200);
+	border-radius: 8px;
+	font-size: 1rem;
+	font-family: inherit;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+	background: var(--white);
+	color: var(--gray-700);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+	outline: none;
+	border-color: var(--teal);
+	box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
+}
+
+.form-group input::placeholder {
+	color: var(--gray-400);
+}
+
+.form-actions {
+	display: flex;
+	gap: 1rem;
+	margin-top: 1.5rem;
+}
+
+.form-actions .btn {
+	flex: 1;
+}
+
+.consultation-success {
+	text-align: center;
+	padding: 2rem 0;
+}
+
+.success-icon {
+	width: 64px;
+	height: 64px;
+	border-radius: 50%;
+	background: var(--teal);
+	color: var(--white);
+	font-size: 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 auto 1.5rem;
+	font-weight: 700;
+}
+
+.consultation-success h3 {
+	color: var(--navy);
+	margin-bottom: 1rem;
+	font-size: 1.5rem;
+}
+
+.consultation-success p {
+	color: var(--gray-600);
+	font-size: 1.125rem;
+	line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+	.modal-content {
+		padding: 1.5rem;
+		width: 95%;
+		max-height: 98vh;
+	}
+	
+	.modal-content h2 {
+		font-size: 1.5rem;
+		margin-bottom: 1.25rem;
+	}
+	
+	.form-group {
+		margin-bottom: 1rem;
+	}
+	
+	.form-actions {
+		flex-direction: column;
+		margin-top: 1.25rem;
+	}
+	
+	.form-actions .btn {
+		width: 100%;
+	}
+}
+
+/* ========================================
    Hero Section
    ======================================== */
 .hero {

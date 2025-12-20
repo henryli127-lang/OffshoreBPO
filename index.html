@@ -65,7 +65,7 @@
 						</li>
 					</ul>
 					<div class="hero-cta">
-						<a href="#contact" class="btn btn-primary">Book a free consultation</a>
+						<a href="#contact" class="btn btn-primary" id="consultation-btn-hero">Book a free consultation</a>
 						<a href="#" class="btn btn-outline">Download service overview</a>
 					</div>
 				</div>
@@ -466,7 +466,7 @@
 					<h2>Ready to explore your China options?</h2>
 					<p>Share your plans, and we will show you what a China team‑as‑a‑service could look like for your company, including timelines, costs, and risk considerations.</p>
 					<div class="cta-buttons">
-						<a href="#" class="btn btn-light">Book a free consultation</a>
+						<a href="#" class="btn btn-light" id="consultation-btn-cta">Book a free consultation</a>
 						<a href="#" class="btn btn-ghost">Contact us</a>
 					</div>
 				</div>
@@ -525,6 +525,78 @@
 			</div>
 		</div>
 	</footer>
+
+	<!-- Consultation Modal -->
+	<div id="consultation-modal" class="modal">
+		<div class="modal-content">
+			<span class="modal-close">&times;</span>
+			<h2>Book a Free Consultation</h2>
+			<form id="consultation-form">
+				<div class="form-group">
+					<label for="name">Name *</label>
+					<input type="text" id="name" name="name" required>
+				</div>
+				<div class="form-group">
+					<label for="email">Work Email *</label>
+					<input type="email" id="email" name="email" required>
+				</div>
+				<div class="form-group">
+					<label for="phone">Phone Number *</label>
+					<input type="tel" id="phone" name="phone" required>
+				</div>
+				<div class="form-group">
+					<label for="country">Which country are you located in? *</label>
+					<select id="country" name="country" required>
+						<option value="">Please select</option>
+						<option value="US">United States</option>
+						<option value="CA">Canada</option>
+						<option value="GB">United Kingdom</option>
+						<option value="AU">Australia</option>
+						<option value="DE">Germany</option>
+						<option value="FR">France</option>
+						<option value="IT">Italy</option>
+						<option value="ES">Spain</option>
+						<option value="NL">Netherlands</option>
+						<option value="BE">Belgium</option>
+						<option value="CH">Switzerland</option>
+						<option value="AT">Austria</option>
+						<option value="SE">Sweden</option>
+						<option value="NO">Norway</option>
+						<option value="DK">Denmark</option>
+						<option value="FI">Finland</option>
+						<option value="IE">Ireland</option>
+						<option value="NZ">New Zealand</option>
+						<option value="SG">Singapore</option>
+						<option value="HK">Hong Kong</option>
+						<option value="JP">Japan</option>
+						<option value="KR">South Korea</option>
+						<option value="Other">Other</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="employees">How many employees are you planning to hire? *</label>
+					<select id="employees" name="employees" required>
+						<option value="">Please select</option>
+						<option value="1-5">1-5 employees</option>
+						<option value="6-10">6-10 employees</option>
+						<option value="11-20">11-20 employees</option>
+						<option value="21-50">21-50 employees</option>
+						<option value="51-100">51-100 employees</option>
+						<option value="100+">100+ employees</option>
+					</select>
+				</div>
+				<div class="form-actions">
+					<button type="submit" class="btn btn-primary">Book Consultation</button>
+					<button type="button" class="btn btn-outline modal-cancel">Cancel</button>
+				</div>
+			</form>
+			<div id="consultation-success" class="consultation-success" style="display: none;">
+				<div class="success-icon">✓</div>
+				<h3>Thank you!</h3>
+				<p>Someone from our team will contact you within 24 hours.</p>
+			</div>
+		</div>
+	</div>
 
 	<script>
 		// Smooth scroll
@@ -600,6 +672,94 @@
 				});
 			}
 		}
+
+		// Consultation Modal
+		const consultationModal = document.getElementById('consultation-modal');
+		const consultationForm = document.getElementById('consultation-form');
+		const consultationSuccess = document.getElementById('consultation-success');
+		const modalClose = document.querySelector('.modal-close');
+		const modalCancel = document.querySelector('.modal-cancel');
+		const consultationBtns = document.querySelectorAll('#consultation-btn-hero, #consultation-btn-cta');
+
+		// Open modal
+		consultationBtns.forEach(btn => {
+			btn.addEventListener('click', (e) => {
+				e.preventDefault();
+				consultationModal.classList.add('active');
+				document.body.style.overflow = 'hidden';
+			});
+		});
+
+		// Close modal
+		const closeModal = () => {
+			consultationModal.classList.remove('active');
+			document.body.style.overflow = '';
+			consultationForm.style.display = 'block';
+			consultationSuccess.style.display = 'none';
+			consultationForm.reset();
+		};
+
+		if (modalClose) {
+			modalClose.addEventListener('click', closeModal);
+		}
+
+		if (modalCancel) {
+			modalCancel.addEventListener('click', closeModal);
+		}
+
+		// Close modal when clicking outside
+		consultationModal.addEventListener('click', (e) => {
+			if (e.target === consultationModal) {
+				closeModal();
+			}
+		});
+
+		// Form submission
+		consultationForm.addEventListener('submit', async (e) => {
+			e.preventDefault();
+
+			const formData = {
+				name: document.getElementById('name').value,
+				email: document.getElementById('email').value,
+				phone: document.getElementById('phone').value,
+				country: document.getElementById('country').value,
+				employees: document.getElementById('employees').value
+			};
+
+			// Show loading state
+			const submitBtn = consultationForm.querySelector('button[type="submit"]');
+			const originalText = submitBtn.textContent;
+			submitBtn.disabled = true;
+			submitBtn.textContent = 'Submitting...';
+
+			try {
+				const response = await fetch('/api/consultation', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(formData)
+				});
+
+				const result = await response.json();
+
+				if (response.ok) {
+					consultationForm.style.display = 'none';
+					consultationSuccess.style.display = 'block';
+				} else {
+					const errorMsg = result.error || `Server error (${response.status}): ${response.statusText}`;
+					console.error('Server error:', errorMsg);
+					alert(errorMsg);
+					submitBtn.disabled = false;
+					submitBtn.textContent = originalText;
+				}
+			} catch (error) {
+				console.error('Error:', error);
+				alert('Network error: ' + error.message + '. Please check if the server is running.');
+				submitBtn.disabled = false;
+				submitBtn.textContent = originalText;
+			}
+		});
 	</script>
 	</body>
 </html>
