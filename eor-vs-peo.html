@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Navigating China's Talent Market: A Strategic Guide to EOR vs. PEO</title>
+	<link rel="stylesheet" href="styles.css">
+	<style>
+		/* EOR vs PEO Page Specific Styles */
+		.eor-peo-page {
+			font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+			background: #ffffff;
+			color: #1a1a1a;
+			line-height: 1.6;
+		}
+
+		/* Title Banner */
+		.title-banner {
+			background: #0F4C75;
+			color: #ffffff;
+			padding: 2rem 3rem;
+			text-align: center;
+		}
+
+		.title-banner h1 {
+			font-size: 2rem;
+			font-weight: 700;
+			margin: 0;
+			letter-spacing: 0.5px;
+		}
+
+		/* Main Container */
+		.eor-peo-container {
+			max-width: 1400px;
+			margin: 0 auto;
+			padding: 3rem;
+		}
+
+		/* Section: China Opportunity */
+		.china-opportunity {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 2rem;
+			margin-bottom: 3rem;
+		}
+
+		.opportunity-card {
+			background: #f8f9fa;
+			border-radius: 12px;
+			padding: 2rem;
+			border: 1px solid #e0e0e0;
+		}
+
+		.opportunity-card h2 {
+			font-size: 1.25rem;
+			font-weight: 700;
+			color: #0F4C75;
+			margin-bottom: 1.5rem;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+		}
+
+		.illustration-box {
+			background: #ffffff;
+			border-radius: 8px;
+			padding: 1.5rem;
+			margin-bottom: 1rem;
+			min-height: 200px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+		}
+
+		.illustration-box svg {
+			width: 100%;
+			height: auto;
+		}
+
+		.opportunity-text {
+			font-size: 0.95rem;
+			color: #333;
+			font-weight: 500;
+			line-height: 1.5;
+		}
+
+		/* Three Pillars Section */
+		.three-pillars {
+			background: #ffffff;
+			border-radius: 12px;
+			padding: 2rem;
+			border: 1px solid #e0e0e0;
+		}
+
+		.three-pillars h2 {
+			font-size: 1.25rem;
+			font-weight: 700;
+			color: #0F4C75;
+			margin-bottom: 1.5rem;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+		}
+
+		.pillars-container {
+			display: flex;
+			justify-content: space-around;
+			align-items: flex-end;
+			margin: 2rem 0;
+			gap: 1rem;
+		}
+
+		.pillar {
+			flex: 1;
+			text-align: center;
+		}
+
+		.pillar-icon {
+			width: 80px;
+			height: 80px;
+			background: #0F4C75;
+			border-radius: 50%;
+			margin: 0 auto 1rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: #ffffff;
+			font-weight: 700;
+			font-size: 0.9rem;
+		}
+
+		.pillar-text {
+			font-size: 0.85rem;
+			font-weight: 600;
+			color: #333;
+			line-height: 1.4;
+			margin-top: 0.5rem;
+		}
+
+		.warning-text {
+			background: #fff3cd;
+			border-left: 4px solid #ff9800;
+			padding: 1rem;
+			margin-top: 1.5rem;
+			font-size: 0.9rem;
+			font-weight: 600;
+			color: #856404;
+		}
+
+		/* Independent Contractor Risk */
+		.contractor-risk {
+			background: #fff5f5;
+			border-left: 4px solid #dc3545;
+			padding: 1.5rem;
+			margin-top: 2rem;
+			border-radius: 8px;
+		}
+
+		.contractor-risk h3 {
+			font-size: 1.1rem;
+			font-weight: 700;
+			color: #0F4C75;
+			margin-bottom: 1rem;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+		}
+
+		.risk-content {
+			display: flex;
+			align-items: center;
+			gap: 1.5rem;
+		}
+
+		.risk-icon {
+			flex-shrink: 0;
+			width: 80px;
+			height: 80px;
+		}
+
+		.risk-text {
+			font-size: 0.95rem;
+			color: #333;
+			line-height: 1.5;
+			font-weight: 500;
+		}
+
+		/* EOR and PEO Definitions */
+		.definitions {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 2rem;
+			margin: 3rem 0;
+		}
+
+		.definition-card {
+			background: #f8f9fa;
+			border-radius: 12px;
+			padding: 2rem;
+			border: 1px solid #e0e0e0;
+		}
+
+		.definition-card h2 {
+			font-size: 1.25rem;
+			font-weight: 700;
+			color: #0F4C75;
+			margin-bottom: 1.5rem;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+		}
+
+		.definition-icon {
+			width: 100px;
+			height: 100px;
+			margin: 0 auto 1.5rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.definition-text {
+			font-size: 0.95rem;
+			color: #333;
+			line-height: 1.6;
+			font-weight: 500;
+		}
+
+		/* Comparison Section */
+		.comparison-section {
+			margin: 3rem 0;
+		}
+
+		.comparison-section h2 {
+			font-size: 1.5rem;
+			font-weight: 700;
+			color: #0F4C75;
+			margin-bottom: 2rem;
+			text-align: center;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+		}
+
+		.comparison-grid {
+			display: grid;
+			grid-template-columns: 1fr 2fr 1fr;
+			gap: 2rem;
+		}
+
+		.comparison-criteria {
+			display: flex;
+			flex-direction: column;
+			gap: 2rem;
+		}
+
+		.criterion-item {
+			background: #ffffff;
+			border: 1px solid #e0e0e0;
+			border-radius: 8px;
+			padding: 1.5rem;
+		}
+
+		.criterion-icon {
+			width: 50px;
+			height: 50px;
+			margin-bottom: 1rem;
+		}
+
+		.criterion-title {
+			font-size: 0.9rem;
+			font-weight: 700;
+			color: #0F4C75;
+			margin-bottom: 0.5rem;
+			text-transform: uppercase;
+		}
+
+		.criterion-text {
+			font-size: 0.85rem;
+			color: #333;
+			line-height: 1.5;
+		}
+
+		.comparison-box {
+			background: #f8f9fa;
+			border-radius: 12px;
+			padding: 2rem;
+			border: 2px solid #0F4C75;
+		}
+
+		.comparison-box h3 {
+			font-size: 1.25rem;
+			font-weight: 700;
+			color: #0F4C75;
+			margin-bottom: 1.5rem;
+			text-align: center;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+		}
+
+		.comparison-list {
+			list-style: none;
+			padding: 0;
+		}
+
+		.comparison-list li {
+			font-size: 0.9rem;
+			color: #333;
+			line-height: 1.8;
+			margin-bottom: 1rem;
+			padding-left: 1.5rem;
+			position: relative;
+		}
+
+		.comparison-list li::before {
+			content: "•";
+			position: absolute;
+			left: 0;
+			color: #0F4C75;
+			font-weight: bold;
+			font-size: 1.2rem;
+		}
+
+		.comparison-list strong {
+			color: #0F4C75;
+			font-weight: 700;
+		}
+
+		/* Use Cases Section */
+		.use-cases {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 2rem;
+			margin: 3rem 0;
+		}
+
+		.use-case-card {
+			background: #f8f9fa;
+			border-radius: 12px;
+			padding: 2rem;
+			border: 1px solid #e0e0e0;
+		}
+
+		.use-case-card h2 {
+			font-size: 1.25rem;
+			font-weight: 700;
+			color: #0F4C75;
+			margin-bottom: 1.5rem;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+		}
+
+		.use-case-illustration {
+			background: #ffffff;
+			border-radius: 8px;
+			padding: 1.5rem;
+			margin-bottom: 1rem;
+			min-height: 150px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.use-case-text {
+			font-size: 0.95rem;
+			color: #333;
+			line-height: 1.6;
+			font-weight: 500;
+		}
+
+		/* Journey Section */
+		.journey-section {
+			margin: 3rem 0;
+		}
+
+		.journey-steps {
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+		}
+
+		.journey-step {
+			padding: 1.5rem 2rem;
+			border-radius: 8px;
+			color: #ffffff;
+			font-weight: 600;
+		}
+
+		.step-1 {
+			background: #ffc107;
+			color: #333;
+		}
+
+		.step-2 {
+			background: #dc3545;
+		}
+
+		.step-3 {
+			background: linear-gradient(to right, #ffc107, #dc3545);
+			color: #ffffff;
+		}
+
+		.journey-step h3 {
+			font-size: 1.1rem;
+			font-weight: 700;
+			margin-bottom: 0.5rem;
+			text-transform: uppercase;
+		}
+
+		.journey-step p {
+			font-size: 0.95rem;
+			line-height: 1.6;
+			margin: 0;
+		}
+
+		/* Partner Selection */
+		.partner-selection {
+			background: #f8f9fa;
+			border-radius: 12px;
+			padding: 2rem;
+			margin-top: 3rem;
+			border: 1px solid #e0e0e0;
+		}
+
+		.partner-selection h2 {
+			font-size: 1.25rem;
+			font-weight: 700;
+			color: #0F4C75;
+			margin-bottom: 1.5rem;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+		}
+
+		.partner-list {
+			list-style: none;
+			padding: 0;
+		}
+
+		.partner-list li {
+			font-size: 0.95rem;
+			color: #333;
+			line-height: 1.8;
+			margin-bottom: 1rem;
+			padding-left: 2rem;
+			position: relative;
+		}
+
+		.partner-list li::before {
+			content: "✓";
+			position: absolute;
+			left: 0;
+			color: #28a745;
+			font-weight: bold;
+			font-size: 1.2rem;
+		}
+
+		/* Responsive */
+		@media (max-width: 1024px) {
+			.china-opportunity,
+			.definitions,
+			.use-cases {
+				grid-template-columns: 1fr;
+			}
+
+			.comparison-grid {
+				grid-template-columns: 1fr;
+			}
+
+			.pillars-container {
+				flex-direction: column;
+				align-items: center;
+			}
+		}
+	</style>
+</head>
+<body class="eor-peo-page">
+	<!-- Title Banner -->
+	<div class="title-banner">
+		<h1>Navigating China's Talent Market: A Strategic Guide to EOR vs. PEO</h1>
+	</div>
+
+	<div class="eor-peo-container">
+		<!-- China Opportunity & Compliance Challenge -->
+		<div class="china-opportunity">
+			<!-- Left: China as High-Value BPO Destination -->
+			<div class="opportunity-card">
+				<h2>CHINA: A HIGH-VALUE BPO DESTINATION</h2>
+				<div class="illustration-box">
+					<svg width="300" height="180" viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg">
+						<!-- Laptop -->
+						<rect x="50" y="80" width="200" height="120" rx="8" fill="#0F4C75" opacity="0.1"/>
+						<rect x="60" y="90" width="180" height="100" rx="4" fill="#ffffff"/>
+						<!-- Screen icons -->
+						<circle cx="90" cy="120" r="12" fill="#14B8A6"/>
+						<circle cx="130" cy="120" r="12" fill="#ff9800"/>
+						<circle cx="170" cy="120" r="12" fill="#0F4C75"/>
+						<rect x="200" y="115" width="25" height="10" rx="2" fill="#666"/>
+						<!-- Growth arrow -->
+						<path d="M 150 50 L 150 80 L 145 75 M 150 80 L 155 75" stroke="#ff9800" stroke-width="3" fill="none"/>
+						<!-- Gold coins -->
+						<circle cx="120" cy="40" r="8" fill="#ffc107"/>
+						<circle cx="140" cy="35" r="8" fill="#ffc107"/>
+						<circle cx="160" cy="40" r="8" fill="#ffc107"/>
+						<circle cx="180" cy="45" r="8" fill="#ffc107"/>
+					</svg>
+				</div>
+				<p class="opportunity-text">SHIFT FROM LOW-COST TO KNOWLEDGE-INTENSIVE SERVICES, ~12% ANNUAL GROWTH PROJECTED TO 2030</p>
+			</div>
+
+			<!-- Right: Three Pillars of Compliance -->
+			<div class="three-pillars">
+				<h2>CHINA'S THREE PILLARS OF EMPLOYMENT COMPLIANCE</h2>
+				<div style="text-align: center; margin-bottom: 1.5rem;">
+					<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="30" cy="30" r="28" fill="#0F4C75" opacity="0.1"/>
+						<text x="30" y="35" font-size="24" fill="#0F4C75" text-anchor="middle" font-weight="bold">中</text>
+					</svg>
+				</div>
+				<div class="pillars-container">
+					<div class="pillar">
+						<div class="pillar-icon">1</div>
+						<div class="pillar-text">LABOR CONTRACTS</div>
+					</div>
+					<div class="pillar">
+						<div class="pillar-icon" style="height: 100px;">2</div>
+						<div class="pillar-text">SOCIAL SECURITY & HOUSING FUND CONTRIBUTIONS</div>
+					</div>
+					<div class="pillar">
+						<div class="pillar-icon" style="height: 90px;">3</div>
+						<div class="pillar-text">INDIVIDUAL INCOME TAX (IIT) WITHHOLDING</div>
+					</div>
+				</div>
+				<div class="warning-text">
+					AUTHORITIES DEMAND STRICT ALIGNMENT; MISSTEPS LEAD TO LIABILITIES & PENALTIES
+				</div>
+			</div>
+		</div>
+
+		<!-- Independent Contractor Risk -->
+		<div class="contractor-risk">
+			<h3>THE 'INDEPENDENT CONTRACTOR' RISK</h3>
+			<div class="risk-content">
+				<div class="risk-icon">
+					<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+						<!-- Person silhouette -->
+						<circle cx="40" cy="25" r="12" fill="#666"/>
+						<path d="M 20 65 Q 20 50 40 50 Q 60 50 60 65" stroke="#666" stroke-width="3" fill="none"/>
+						<!-- Red X -->
+						<line x1="15" y1="15" x2="65" y2="65" stroke="#dc3545" stroke-width="4"/>
+						<line x1="65" y1="15" x2="15" y2="65" stroke="#dc3545" stroke-width="4"/>
+						<!-- Coins -->
+						<circle cx="15" cy="75" r="4" fill="#ffc107"/>
+						<circle cx="65" cy="75" r="4" fill="#ffc107"/>
+					</svg>
+				</div>
+				<p class="risk-text">OFTEN PAYMENTS TO CONTRACTORS FOR WORK IN CHINA CAN BE RECLASSIFIED AS DISGUISED EMPLOYMENT, TRIGGERING BACK TAXES & PENALTIES</p>
+			</div>
+		</div>
+
+		<!-- EOR and PEO Definitions -->
+		<div class="definitions">
+			<div class="definition-card">
+				<h2>EOR: A TURNKEY LEGAL EMPLOYER</h2>
+				<div class="definition-icon">
+					<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+						<!-- Shield with scales -->
+						<path d="M 50 10 L 20 25 L 20 50 Q 20 70 50 90 Q 80 70 80 50 L 80 25 Z" fill="#0F4C75" opacity="0.2" stroke="#0F4C75" stroke-width="2"/>
+						<!-- Scales -->
+						<line x1="50" y1="30" x2="50" y2="60" stroke="#0F4C75" stroke-width="2"/>
+						<line x1="35" y1="60" x2="65" y2="60" stroke="#0F4C75" stroke-width="2"/>
+						<circle cx="35" cy="65" r="8" fill="#0F4C75"/>
+						<circle cx="65" cy="65" r="8" fill="#0F4C75"/>
+					</svg>
+				</div>
+				<p class="definition-text">THE EOR PROVIDER BECOMES THE LEGAL EMPLOYER OF STAFF, HANDLING ALL HR, PAYROLL, & COMPLIANCE OBLIGATIONS. HIRE WITHOUT A CHINESE ENTITY</p>
+			</div>
+
+			<div class="definition-card">
+				<h2>PEO: A CO-EMPLOYMENT PARTNERSHIP</h2>
+				<div class="definition-icon">
+					<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+						<!-- Building -->
+						<rect x="20" y="40" width="60" height="50" fill="#0F4C75" opacity="0.2" stroke="#0F4C75" stroke-width="2"/>
+						<rect x="30" y="50" width="15" height="15" fill="#0F4C75"/>
+						<rect x="55" y="50" width="15" height="15" fill="#0F4C75"/>
+						<rect x="30" y="70" width="15" height="15" fill="#0F4C75"/>
+						<rect x="55" y="70" width="15" height="15" fill="#0F4C75"/>
+						<!-- Handshake figures -->
+						<circle cx="15" cy="35" r="6" fill="#0F4C75"/>
+						<path d="M 10 40 Q 10 45 15 45 Q 20 45 20 40" stroke="#0F4C75" stroke-width="2" fill="none"/>
+						<circle cx="85" cy="35" r="6" fill="#0F4C75"/>
+						<path d="M 80 40 Q 80 45 85 45 Q 90 45 90 40" stroke="#0F4C75" stroke-width="2" fill="none"/>
+						<line x1="20" y1="40" x2="80" y2="40" stroke="#0F4C75" stroke-width="2"/>
+					</svg>
+				</div>
+				<p class="definition-text">A PEO SHARES HR DUTIES WITH YOUR EXISTING CHINESE ENTITY, WHICH REMAINS THE LEGAL EMPLOYER OF RECORD</p>
+			</div>
+		</div>
+
+		<!-- EOR vs PEO Comparison -->
+		<div class="comparison-section">
+			<h2>EOR vs. PEO: A STRATEGIC COMPARISON</h2>
+			<div class="comparison-grid">
+				<!-- EOR Box -->
+				<div class="comparison-box">
+					<h3>EOR in China</h3>
+					<ul class="comparison-list">
+						<li><strong>LEGAL EMPLOYER:</strong> EOR provider is the legal employer of staff</li>
+						<li><strong>LOCAL ENTITY:</strong> NOT REQUIRED: HIRE WITHOUT CHINESE COMPANY</li>
+						<li><strong>COMPLIANCE RESPONSIBILITY:</strong> EOR BEARS DAY-TO-DAY COMPLIANCE & HR OBLIGATIONS</li>
+						<li><strong>SPEED TO HIRE:</strong> OFTEN 2-4 WEEKS TO ONBOARD</li>
+						<li><strong>TYPICAL USE CASE:</strong> MARKET ENTRY, PILOT TEAMS, DISTRIBUTED TEAMS, RISK-SENSITIVE PROJECTS</li>
+					</ul>
+				</div>
+
+				<!-- Center: Comparison Criteria -->
+				<div class="comparison-criteria">
+					<div class="criterion-item">
+						<div class="criterion-icon">
+							<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+								<path d="M 25 5 L 35 15 L 15 15 Z" fill="#0F4C75"/>
+								<rect x="15" y="15" width="20" height="20" fill="#0F4C75" opacity="0.3"/>
+								<rect x="10" y="35" width="30" height="5" fill="#0F4C75"/>
+							</svg>
+						</div>
+						<div class="criterion-title">LEGAL & COMPLIANCE RISK ALLOCATION</div>
+						<div class="criterion-text">EOR CENTRALIZES RISK WITH PROVIDER, PEO LIABILITY LARGELY REMAINS WITH YOUR ENTITY</div>
+					</div>
+
+					<div class="criterion-item">
+						<div class="criterion-icon">
+							<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+								<circle cx="15" cy="35" r="6" fill="#ffc107"/>
+								<circle cx="25" cy="30" r="6" fill="#ffc107"/>
+								<circle cx="35" cy="35" r="6" fill="#ffc107"/>
+							</svg>
+						</div>
+						<div class="criterion-title">TOTAL COST OF OWNERSHIP (TCO)</div>
+						<div class="criterion-text">EOR LOWER FOR SMALL TEAMS (&lt;20 FTE), AVOIDS ENTITY SETUP COSTS. PEO MORE ECONOMICAL FOR LARGER, STABLE OPERATIONS</div>
+					</div>
+
+					<div class="criterion-item">
+						<div class="criterion-icon">
+							<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+								<circle cx="25" cy="20" r="12" fill="#0F4C75" opacity="0.2" stroke="#0F4C75" stroke-width="2"/>
+								<circle cx="25" cy="20" r="3" fill="#0F4C75"/>
+							</svg>
+						</div>
+						<div class="criterion-title">TALENT ACCESS & GEOGRAPHIC FLEXIBILITY</div>
+						<div class="criterion-text">EOR OFFERS MULTI-CITY COVERAGE. PEO CONSTRAINED BY ENTITY REGISTRATION LOCATION</div>
+					</div>
+				</div>
+
+				<!-- PEO Box -->
+				<div class="comparison-box">
+					<h3>PEO in China</h3>
+					<ul class="comparison-list">
+						<li><strong>LEGAL EMPLOYER:</strong> YOUR CHINESE ENTITY IS THE LEGAL EMPLOYER</li>
+						<li><strong>LOCAL ENTITY:</strong> REQUIRED: PEO WORKS ONLY ONCE AN ENTITY EXISTS</li>
+						<li><strong>COMPLIANCE RESPONSIBILITY:</strong> SHARED: LEGAL LIABILITY LARGELY REMAINS WITH YOU</li>
+						<li><strong>SPEED TO HIRE:</strong> DEPENDENT ON YOUR ENTITY SETUP & INTERNAL APPROVALS</li>
+						<li><strong>TYPICAL USE CASE:</strong> GROWTH PHASE, LARGER STABLE TEAMS, LONG-TERM PRESENCE COMMITMENT</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<!-- Use Cases -->
+		<div class="use-cases">
+			<div class="use-case-card">
+				<h2>WHEN EOR IS THE BETTER FIT</h2>
+				<div class="use-case-illustration">
+					<svg width="300" height="120" viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg">
+						<!-- Speedboats -->
+						<ellipse cx="80" cy="80" rx="40" ry="15" fill="#0F4C75" opacity="0.3"/>
+						<polygon points="60,80 70,65 90,65 100,80" fill="#0F4C75"/>
+						<circle cx="75" cy="75" r="3" fill="#ffc107"/>
+						<text x="80" y="55" font-size="14" fill="#0F4C75" text-anchor="middle" font-weight="bold">⏱</text>
+						
+						<ellipse cx="220" cy="80" rx="40" ry="15" fill="#0F4C75" opacity="0.3"/>
+						<polygon points="200,80 210,65 230,65 240,80" fill="#0F4C75"/>
+						<circle cx="215" cy="75" r="3" fill="#ffc107"/>
+						<text x="220" y="55" font-size="14" fill="#0F4C75" text-anchor="middle" font-weight="bold">→</text>
+						
+						<!-- Water -->
+						<path d="M 0 95 Q 75 90 150 95 T 300 95" stroke="#14B8A6" stroke-width="2" fill="none" opacity="0.5"/>
+					</svg>
+				</div>
+				<p class="use-case-text">IDEAL FOR VALIDATING BUSINESS CASE (SMALL TEAM), AVOIDING ENTITY SETUP, REGULATED INDUSTRIES, MANAGING DYNAMIC HEADCOUNT</p>
+			</div>
+
+			<div class="use-case-card">
+				<h2>WHEN PEO BECOMES COMPELLING</h2>
+				<div class="use-case-illustration">
+					<svg width="300" height="120" viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg">
+						<!-- Cargo ship -->
+						<rect x="80" y="60" width="140" height="30" rx="5" fill="#0F4C75"/>
+						<polygon points="80,60 120,40 160,40 200,60" fill="#0F4C75" opacity="0.8"/>
+						<rect x="100" y="45" width="60" height="15" fill="#666"/>
+						<!-- Containers -->
+						<rect x="90" y="30" width="25" height="20" fill="#ff9800"/>
+						<rect x="120" y="30" width="25" height="20" fill="#0F4C75"/>
+						<rect x="150" y="30" width="25" height="20" fill="#ff9800"/>
+						<rect x="180" y="30" width="25" height="20" fill="#0F4C75"/>
+						<!-- Bar chart -->
+						<rect x="220" y="70" width="15" height="20" fill="#14B8A6"/>
+						<rect x="240" y="60" width="15" height="30" fill="#14B8A6"/>
+						<rect x="260" y="50" width="15" height="40" fill="#14B8A6"/>
+					</svg>
+				</div>
+				<p class="use-case-text">BEST WITH A LOCAL ENTITY FOR LONG-TERM OPERATIONS, WANTING FULL CONTROL OVER EMPLOYMENT BRANDING, BUILDING LARGE, STABLE TEAMS</p>
+			</div>
+		</div>
+
+		<!-- Journey Section -->
+		<div class="journey-section">
+			<div class="journey-steps">
+				<div class="journey-step step-1">
+					<h3>STEP 1: VALIDATE WITH EOR</h3>
+					<p>BEGIN WITH EOR TO TEST MARKET. BUILD INITIAL TEAM, ACCELERATE TIME-TO-PRODUCTIVITY WITH MINIMAL RISK & SUNK COSTS</p>
+				</div>
+				<div class="journey-step step-2">
+					<h3>STEP 2: SCALE WITH A LOCAL ENTITY + PEO</h3>
+					<p>Once your business case is proven and long-term commitment is justified, establish a local entity and engage a PEO to professionalize HR operations.</p>
+				</div>
+				<div class="journey-step step-3">
+					<h3>COMPLEMENTARY TOOLS, NOT COMPETITORS</h3>
+					<p>THE MOST EFFECTIVE STRATEGY OFTEN INVOLVES STARTING WITH EOR AND TRANSITIONING TO PEO, USING THE RIGHT TOOL FOR EACH GROWTH STAGE</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Partner Selection -->
+		<div class="partner-selection">
+			<h2>SELECTING A PARTNER FOR SUCCESS</h2>
+			<ul class="partner-list">
+				<li>LOOK FOR DYNAMIC COMPLIANCE MONITORING: SYSTEMS TO TRACK RECENT REGULATORY CHANGES AT MUNICIPAL LEVEL, AUTOMATICALLY ADJUST PAYROLL & SOCIAL INSURANCE</li>
+				<li>DEMAND TRANSPARENT, AUDIT-READY REPORTING: CONSOLIDATED REPORTS (IFRS/US GAAP COMPLIANT) FOR GLOBAL FINANCE INTEGRATION</li>
+				<li>ENSURE DATA SOVEREIGNTY & PRIVACY: COMPLIANCE WITH CHINA'S PIPL WHILE SUPPORTING NECESSARY CROSS-BORDER DATA FLOWS FOR GLOBAL HR PLATFORMS</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
+
