@@ -469,7 +469,8 @@ p {
 }
 
 .modal-content {
-	background-color: var(--white);
+	background-color: var(--gray-800);
+	border: 1px solid var(--gray-700);
 	margin: auto;
 	padding: 2.5rem;
 	border-radius: 16px;
@@ -489,7 +490,7 @@ p {
 }
 
 .modal-close {
-	color: var(--gray-400);
+	color: var(--gray-300);
 	float: right;
 	font-size: 2rem;
 	font-weight: 300;
@@ -503,12 +504,13 @@ p {
 
 .modal-close:hover,
 .modal-close:focus {
-	color: var(--navy);
+	color: var(--white);
 }
 
 .modal-content h2 {
 	margin-bottom: 1.5rem;
 	font-size: 2rem;
+	color: var(--off-white);
 }
 
 /* Form Styles */
@@ -520,7 +522,7 @@ p {
 	display: block;
 	margin-bottom: 0.5rem;
 	font-weight: 600;
-	color: var(--navy);
+	color: var(--off-white);
 	font-size: 0.9375rem;
 }
 
@@ -528,24 +530,25 @@ p {
 .form-group select {
 	width: 100%;
 	padding: 0.875rem 1rem;
-	border: 2px solid var(--gray-200);
+	border: 2px solid var(--gray-600);
 	border-radius: 8px;
 	font-size: 1rem;
 	font-family: inherit;
 	transition: border-color 0.2s ease, box-shadow 0.2s ease;
-	background: var(--white);
-	color: var(--gray-700);
+	background: var(--gray-700);
+	color: var(--off-white);
 }
 
 .form-group input:focus,
 .form-group select:focus {
 	outline: none;
 	border-color: var(--teal);
-	box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
+	box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.2);
+	background: var(--gray-700);
 }
 
 .form-group input::placeholder {
-	color: var(--gray-400);
+	color: var(--gray-500);
 }
 
 .form-actions {
@@ -578,13 +581,13 @@ p {
 }
 
 .consultation-success h3 {
-	color: var(--navy);
+	color: var(--off-white);
 	margin-bottom: 1rem;
 	font-size: 1.5rem;
 }
 
 .consultation-success p {
-	color: var(--gray-600);
+	color: var(--gray-300);
 	font-size: 1.125rem;
 	line-height: 1.6;
 }
