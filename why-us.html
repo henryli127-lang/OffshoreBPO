@@ -159,7 +159,7 @@
 					<h2 id="cta-heading">Want a partner that understands both China and your global business?</h2>
 					<p>Share your plans, and we will show you what a China team‑as‑a‑service could look like for your company, including timelines, costs, and risk considerations.</p>
 					<div class="cta-buttons">
-						<a href="#" class="btn btn-primary" id="consultation-btn-cta">Book a free consultation</a>
+						<a href="consultation.html" class="btn btn-primary" id="consultation-btn-cta">Book a free consultation</a>
 						<a href="#" class="btn btn-ghost" id="contact-btn-cta">Contact us</a>
 					</div>
 				</div>
@@ -340,7 +340,6 @@
 		const modalTitle = document.getElementById('modal-title');
 		const modalClose = document.querySelector('.modal-close');
 		const modalCancel = document.querySelector('.modal-cancel');
-		const consultationBtns = document.querySelectorAll('#consultation-btn-cta');
 		const contactBtns = document.querySelectorAll('#contact-btn-nav, #contact-btn-cta');
 
 		// Open modal function
@@ -354,13 +353,7 @@
 			consultationForm.reset();
 		};
 
-		// Open modal for consultation buttons
-		consultationBtns.forEach(btn => {
-			btn.addEventListener('click', (e) => {
-				e.preventDefault();
-				openModal('Book a Free Consultation');
-			});
-		});
+		// Consultation buttons now link to consultation.html - no modal needed
 
 		// Open modal for contact buttons
 		contactBtns.forEach(btn => {
