@@ -385,7 +385,7 @@
 					We've sent the PDF to <span id="download-success-email"></span>.
 					You can also download it directly below.
 				</p>
-				<a id="download-direct-link" href="#" class="btn btn-primary" target="_blank" rel="noopener">
+				<a id="download-direct-link" href="#" class="btn btn-primary" download>
 					Download now
 				</a>
 			</div>
@@ -646,9 +646,9 @@
 		const downloadTriggers = document.querySelectorAll('.download-trigger');
 
 		const resourceToUrl = {
-			'service-overview': 'emiliateams-service-overview.pdf',
-			'eor-vs-peo-guide': 'eor-vs-peo-full-guide.pdf',
-			'china-team-guide': 'china-team-sme-full-guide.pdf'
+			'service-overview': 'downloads/emiliateams-service-overview.pdf',
+			'eor-vs-peo-guide': 'downloads/eor-vs-peo-guide.pdf',
+			'china-team-guide': 'downloads/building-your-china-team-guide.pdf'
 		};
 
 		const openDownloadModal = (resource) => {
@@ -662,6 +662,10 @@
 			downloadForm.reset();
 			document.getElementById('download-name-error').textContent = '';
 			document.getElementById('download-email-error').textContent = '';
+			// Reset submit button state
+			const submitBtn = document.getElementById('download-submit-btn');
+			submitBtn.disabled = false;
+			submitBtn.textContent = 'Send me the PDF';
 			setTimeout(() => {
 				document.getElementById('download-name').focus();
 			}, 100);
@@ -675,6 +679,13 @@
 			downloadSuccess.style.display = 'none';
 			document.getElementById('download-error-message').style.display = 'none';
 			downloadForm.reset();
+			// Reset submit button state
+			const submitBtn = document.getElementById('download-submit-btn');
+			submitBtn.disabled = false;
+			submitBtn.textContent = 'Send me the PDF';
+			// Clear error messages
+			document.getElementById('download-name-error').textContent = '';
+			document.getElementById('download-email-error').textContent = '';
 		};
 
 		downloadTriggers.forEach(trigger => {
