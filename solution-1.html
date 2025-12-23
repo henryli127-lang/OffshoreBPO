@@ -67,7 +67,7 @@
 				</ul>
 				<div class="hero-cta">
 					<a href="consultation.html" class="btn btn-primary">Book a free consultation</a>
-					<a href="#" class="btn btn-outline">Download BPO service overview</a>
+					<a href="#" class="btn btn-outline download-trigger" data-resource="service-overview">Download BPO service overview</a>
 				</div>
 			</div>
 		</div>
@@ -317,7 +317,7 @@
 					<p>Share your plans for support, delivery, or back‑office operations, and we'll outline what a China team‑as‑a‑service could look like – including timelines, costs, and risks.</p>
 					<div class="cta-buttons">
 						<a href="consultation.html" class="btn btn-primary">Book a free consultation</a>
-						<a href="#" class="btn btn-ghost">Download BPO overview</a>
+						<a href="#" class="btn btn-ghost download-trigger" data-resource="service-overview">Download BPO overview</a>
 					</div>
 					<div class="related-resources">
 						<p class="resources-label">Related resources:</p>
@@ -354,7 +354,7 @@
 				<div class="footer-links">
 					<h4>Get Started</h4>
 					<a href="consultation.html">Book a Call</a>
-					<a href="index.html">Download Overview</a>
+					<a href="#" class="download-trigger" data-resource="service-overview">Download Overview</a>
 				</div>
 			</div>
 			<div class="footer-bottom">
@@ -362,6 +362,48 @@
 			</div>
 		</div>
 	</footer>
+
+	<!-- Download Modal -->
+	<div id="download-modal" class="modal">
+		<div class="modal-content">
+			<span class="modal-close download-modal-close">&times;</span>
+			<h2 class="modal-title" id="download-modal-title">Get the PDF by email</h2>
+			<p class="modal-subtitle">
+				Enter your name and email, and we'll send the PDF straight to your inbox (and give you a direct download link on this page).
+			</p>
+			<form id="download-form">
+				<input type="hidden" id="download-resource" name="resource" value="">
+				<div class="form-group">
+					<label for="download-name">Name *</label>
+					<input type="text" id="download-name" name="name" required>
+					<span class="form-error" id="download-name-error"></span>
+				</div>
+				<div class="form-group">
+					<label for="download-email">Email *</label>
+					<input type="email" id="download-email" name="email" required>
+					<span class="form-error" id="download-email-error"></span>
+				</div>
+				<div class="form-actions">
+					<button type="submit" class="btn btn-primary" id="download-submit-btn">Send me the PDF</button>
+					<button type="button" class="btn btn-outline download-modal-cancel">Cancel</button>
+				</div>
+				<div id="download-error-message" class="download-error-message" style="display: none;">
+					<p>Something went wrong. Please try again or email us at info@emiliateams.com.</p>
+				</div>
+			</form>
+			<div id="download-success" class="download-success" hidden>
+				<div class="success-icon">✓</div>
+				<h3>Check your email</h3>
+				<p class="success-message">
+					We've sent the PDF to <span id="download-success-email"></span>.
+					You can also download it directly below.
+				</p>
+				<a id="download-direct-link" href="#" class="btn btn-primary" target="_blank" rel="noopener">
+					Download now
+				</a>
+			</div>
+		</div>
+	</div>
 
 	<!-- Contact Modal -->
 	<div id="consultation-modal" class="modal">
@@ -602,6 +644,152 @@
 			} catch (error) {
 				console.error('Error:', error);
 				alert('Network error: ' + error.message + '. Please check if the server is running.');
+				submitBtn.disabled = false;
+				submitBtn.textContent = originalText;
+			}
+		});
+
+		// Download Modal
+		const downloadModal = document.getElementById('download-modal');
+		const downloadForm = document.getElementById('download-form');
+		const downloadSuccess = document.getElementById('download-success');
+		const downloadModalClose = document.querySelector('.download-modal-close');
+		const downloadModalCancel = document.querySelector('.download-modal-cancel');
+		const downloadResourceInput = document.getElementById('download-resource');
+		const downloadTriggers = document.querySelectorAll('.download-trigger');
+
+		// Resource to PDF URL mapping
+		const resourceToUrl = {
+			'service-overview': 'emiliateams-service-overview.pdf',
+			'eor-vs-peo-guide': 'eor-vs-peo-full-guide.pdf',
+			'china-team-guide': 'china-team-sme-full-guide.pdf'
+		};
+
+		// Open download modal
+		const openDownloadModal = (resource) => {
+			downloadResourceInput.value = resource;
+			downloadModal.classList.add('active');
+			document.body.style.overflow = 'hidden';
+			downloadForm.style.display = 'block';
+			downloadSuccess.hidden = true;
+			downloadSuccess.style.display = 'none';
+			document.getElementById('download-error-message').style.display = 'none';
+			downloadForm.reset();
+			document.getElementById('download-name-error').textContent = '';
+			document.getElementById('download-email-error').textContent = '';
+			setTimeout(() => {
+				document.getElementById('download-name').focus();
+			}, 100);
+		};
+
+		// Close download modal
+		const closeDownloadModal = () => {
+			downloadModal.classList.remove('active');
+			document.body.style.overflow = '';
+			downloadForm.style.display = 'block';
+			downloadSuccess.hidden = true;
+			downloadSuccess.style.display = 'none';
+			document.getElementById('download-error-message').style.display = 'none';
+			downloadForm.reset();
+		};
+
+		// Open modal for download triggers
+		downloadTriggers.forEach(trigger => {
+			trigger.addEventListener('click', (e) => {
+				e.preventDefault();
+				const resource = trigger.getAttribute('data-resource');
+				if (resource) {
+					openDownloadModal(resource);
+				}
+			});
+		});
+
+		// Close modal handlers
+		if (downloadModalClose) {
+			downloadModalClose.addEventListener('click', closeDownloadModal);
+		}
+
+		if (downloadModalCancel) {
+			downloadModalCancel.addEventListener('click', closeDownloadModal);
+		}
+
+		downloadModal.addEventListener('click', (e) => {
+			if (e.target === downloadModal) {
+				closeDownloadModal();
+			}
+		});
+
+		// Form submission
+		downloadForm.addEventListener('submit', async (e) => {
+			e.preventDefault();
+
+			document.getElementById('download-name-error').textContent = '';
+			document.getElementById('download-email-error').textContent = '';
+			document.getElementById('download-error-message').style.display = 'none';
+
+			const name = document.getElementById('download-name').value.trim();
+			const email = document.getElementById('download-email').value.trim();
+			let isValid = true;
+
+			if (!name) {
+				document.getElementById('download-name-error').textContent = 'Name is required';
+				isValid = false;
+			}
+
+			if (!email) {
+				document.getElementById('download-email-error').textContent = 'Email is required';
+				isValid = false;
+			} else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+				document.getElementById('download-email-error').textContent = 'Please enter a valid email address';
+				isValid = false;
+			}
+
+			if (!isValid) {
+				return;
+			}
+
+			const resource = downloadResourceInput.value;
+			const formData = {
+				name: name,
+				email: email,
+				resource: resource
+			};
+
+			const submitBtn = document.getElementById('download-submit-btn');
+			const originalText = submitBtn.textContent;
+			submitBtn.disabled = true;
+			submitBtn.textContent = 'Sending...';
+
+			try {
+				const response = await fetch('/api/send-download', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(formData)
+				});
+
+				const result = await response.json();
+
+				if (response.ok) {
+					downloadForm.style.display = 'none';
+					downloadSuccess.hidden = false;
+					downloadSuccess.style.display = 'block';
+					document.getElementById('download-success-email').textContent = email;
+					const pdfUrl = resourceToUrl[resource] || '';
+					if (pdfUrl) {
+						document.getElementById('download-direct-link').href = pdfUrl;
+					}
+				} else {
+					const errorMsg = result.error || `Server error (${response.status}): ${response.statusText}`;
+					console.error('Server error:', errorMsg);
+					document.getElementById('download-error-message').style.display = 'block';
+					submitBtn.disabled = false;
+					submitBtn.textContent = originalText;
+				}
+			} catch (error) {
+				console.error('Error:', error);
+				document.getElementById('download-error-message').style.display = 'block';
 				submitBtn.disabled = false;
 				submitBtn.textContent = originalText;
 			}

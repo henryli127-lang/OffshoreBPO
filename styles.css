@@ -592,6 +592,52 @@ p {
 	line-height: 1.6;
 }
 
+/* Download Modal Styles */
+.modal-subtitle {
+	color: var(--gray-300);
+	font-size: 0.9375rem;
+	margin-bottom: 1.5rem;
+	line-height: 1.6;
+}
+
+.form-error {
+	display: block;
+	color: #F87171;
+	font-size: 0.875rem;
+	margin-top: 0.25rem;
+}
+
+.download-error-message {
+	margin-top: 1rem;
+	padding: 1rem;
+	background: rgba(248, 113, 113, 0.1);
+	border: 1px solid rgba(248, 113, 113, 0.3);
+	border-radius: 8px;
+}
+
+.download-error-message p {
+	color: #F87171;
+	margin: 0;
+	font-size: 0.9375rem;
+}
+
+.download-success {
+	text-align: center;
+	padding: 2rem 0;
+}
+
+.download-success .success-message {
+	color: var(--gray-300);
+	margin-bottom: 1.5rem;
+	font-size: 1rem;
+	line-height: 1.6;
+}
+
+.download-success .success-message span {
+	font-weight: 600;
+	color: var(--off-white);
+}
+
 @media (max-width: 768px) {
 	.modal-content {
 		padding: 1.5rem;
