@@ -643,8 +643,8 @@
 	</div>
 
 	<script>
-		// Smooth scroll (only for anchor links that are not modal buttons or download triggers)
-		document.querySelectorAll('a[href^="#"]:not(#consultation-btn-hero):not(#consultation-btn-cta):not(#contact-btn-nav):not(#contact-btn-cta):not(.download-trigger)').forEach(anchor => {
+		// Smooth scroll (only for anchor links that are not modal buttons, download triggers, or dropdown toggles)
+		document.querySelectorAll('a[href^="#"]:not(#consultation-btn-hero):not(#consultation-btn-cta):not(#contact-btn-nav):not(#contact-btn-cta):not(.download-trigger):not(.dropdown-toggle)').forEach(anchor => {
 			anchor.addEventListener('click', function (e) {
 				const href = this.getAttribute('href');
 				// Only process if href is a valid anchor (starts with # and has a valid selector)
@@ -720,6 +720,7 @@
 				dropdownToggle.addEventListener('click', (e) => {
 					if (window.innerWidth <= 768) {
 						e.preventDefault();
+						e.stopPropagation();
 						dropdown.classList.toggle('active');
 					}
 				});

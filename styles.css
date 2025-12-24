@@ -1517,6 +1517,14 @@ p {
 		padding: 0.5rem 0 0.5rem 1rem;
 	}
 	
+	.dropdown:hover .dropdown-arrow {
+		transform: none;
+	}
+	
+	.dropdown.active .dropdown-arrow {
+		transform: rotate(180deg) !important;
+	}
+	
 	.dropdown-menu li {
 		border-bottom: 1px solid var(--gray-600);
 	}
@@ -1540,13 +1548,15 @@ p {
 	}
 	
 	.hero-inner {
-		min-height: 500px;
-		aspect-ratio: 16 / 10;
+		min-height: auto;
+		aspect-ratio: auto;
+		padding-bottom: 3rem;
 	}
 	
 	.hero-content {
 		align-items: flex-start;
 		padding-top: 2rem;
+		padding-bottom: 2rem;
 	}
 	
 	.hero-content-inner {
