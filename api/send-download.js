@@ -91,7 +91,8 @@ module.exports = async (req, res) => {
 					</p>
 					<p>If the button doesn't work, you can copy and paste this link into your browser:</p>
 					<p style="color: #666; word-break: break-all;">${baseUrl}/${pdfUrl}</p>
-					<p>Best regards,<br>The EmiliaTeams Team</p>
+					<p>If you have any questions, please feel free to contact us at <a href="mailto:Info@EmiliaTeams.com">Info@EmiliaTeams.com</a>.</p>
+                    <p>Best regards,<br>The EmiliaTeams Team</p>
 				`
 			};
 
