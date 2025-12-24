@@ -76,7 +76,7 @@ module.exports = async (req, res) => {
 		// Send email with PDF link
 		if (process.env.SMTP_USER && process.env.SMTP_PASS) {
 			const mailOptions = {
-				from: "Do-not-reply"  process.env.SMTP_USER,
+				from: `"EmiliaTeams" <${process.env.SMTP_USER}>`,
 				to: email,
 				subject: `Your ${pdfName} Download`,
 				html: `
