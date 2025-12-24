@@ -3208,6 +3208,7 @@ p {
 	border-radius: 16px;
 	border: 1px solid var(--gray-200);
 	transition: all 0.3s ease;
+	scroll-margin-top: 100px; /* Offset for navbar when scrolling to anchor */
 }
 
 .resource-list-item:hover {

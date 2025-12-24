@@ -12,10 +12,11 @@ app.use(express.json());
 app.use(express.static('.'));
 
 // Email configuration
+const smtpPort = parseInt(process.env.SMTP_PORT || '587');
 const transporter = nodemailer.createTransport({
 	host: process.env.SMTP_HOST || 'smtp.gmail.com',
-	port: parseInt(process.env.SMTP_PORT || '587'),
-	secure: false, // true for 465, false for other ports
+	port: smtpPort,
+	secure: smtpPort === 465, // true for 465 (SSL), false for 587 (TLS)
 	auth: {
 		user: process.env.SMTP_USER,
 		pass: process.env.SMTP_PASS
@@ -24,12 +25,12 @@ const transporter = nodemailer.createTransport({
 		// Do not fail on invalid certs
 		rejectUnauthorized: false
 	},
-	// Connection timeout
-	connectionTimeout: 10000,
+	// Connection timeout (increased for slower connections)
+	connectionTimeout: 30000,
 	// Socket timeout
-	socketTimeout: 10000,
+	socketTimeout: 30000,
 	// Greeting timeout
-	greetingTimeout: 10000
+	greetingTimeout: 30000
 });
 
 // Store submissions in a JSON file
@@ -218,7 +219,7 @@ app.use((err, req, res, next) => {
 	res.status(500).json({ error: 'Internal server error' });
 });
 
-// Test email configuration on startup
+// Test email configuration on startup (non-blocking)
 async function testEmailConfig() {
 	if (process.env.SMTP_USER && process.env.SMTP_PASS) {
 		console.log('📧 Email configuration found:');
@@ -228,14 +229,22 @@ async function testEmailConfig() {
 		console.log('   NOTIFICATION_EMAIL:', process.env.NOTIFICATION_EMAIL || process.env.SMTP_USER);
 		console.log('   SMTP_PASS:', process.env.SMTP_PASS ? '***' + process.env.SMTP_PASS.slice(-4) : 'Not set');
 		
-		// Test connection (optional - can be slow)
+		// Test connection asynchronously (non-blocking)
+		// Use Promise.race to add a timeout
+		const verifyPromise = transporter.verify();
+		const timeoutPromise = new Promise((_, reject) => 
+			setTimeout(() => reject(new Error('Connection timeout after 15 seconds')), 15000)
+		);
+		
 		try {
-			await transporter.verify();
+			await Promise.race([verifyPromise, timeoutPromise]);
 			console.log('✅ SMTP connection verified successfully');
 		} catch (verifyError) {
-			console.error('❌ SMTP connection verification failed:');
-			console.error('   Error:', verifyError.message);
-			console.error('   Please check your SMTP credentials in .env file');
+			console.warn('⚠️  SMTP connection verification failed (server will still start):');
+			console.warn('   Error:', verifyError.message);
+			console.warn('   This may be due to network/firewall restrictions.');
+			console.warn('   Email sending will be attempted when needed, but may fail.');
+			console.warn('   Please verify SMTP settings in .env file if emails are not being sent.');
 		}
 	} else {
 		console.log('⚠️  Warning: SMTP credentials not configured');

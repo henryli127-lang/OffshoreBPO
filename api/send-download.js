@@ -3,10 +3,11 @@ const path = require('path');
 const nodemailer = require('nodemailer');
 
 // Email configuration
+const smtpPort = parseInt(process.env.SMTP_PORT || '587');
 const transporter = nodemailer.createTransport({
 	host: process.env.SMTP_HOST || 'smtp.gmail.com',
-	port: parseInt(process.env.SMTP_PORT || '587'),
-	secure: false,
+	port: smtpPort,
+	secure: smtpPort === 465, // true for 465 (SSL), false for 587 (TLS)
 	auth: {
 		user: process.env.SMTP_USER,
 		pass: process.env.SMTP_PASS
@@ -14,9 +15,10 @@ const transporter = nodemailer.createTransport({
 	tls: {
 		rejectUnauthorized: false
 	},
-	connectionTimeout: 10000,
-	socketTimeout: 10000,
-	greetingTimeout: 10000
+	// Connection timeout (increased for slower connections)
+	connectionTimeout: 30000,
+	socketTimeout: 30000,
+	greetingTimeout: 30000
 });
 
 // Resource to PDF URL mapping
