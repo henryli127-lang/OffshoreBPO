@@ -478,6 +478,23 @@
 	</div>
 
 	<script>
+		// Mobile dropdown toggle - must be before smooth scroll to have priority
+		const dropdownToggle = document.querySelector('.dropdown-toggle');
+		const dropdown = document.querySelector('.dropdown');
+		
+		if (dropdownToggle && dropdown) {
+			// Use capture phase to ensure this runs first
+			dropdownToggle.addEventListener('click', (e) => {
+				if (window.innerWidth <= 768) {
+					e.preventDefault();
+					e.stopPropagation();
+					e.stopImmediatePropagation();
+					dropdown.classList.toggle('active');
+					return false;
+				}
+			}, true); // true = capture phase
+		}
+		
 		// Smooth scroll (only for anchor links that are not modal buttons, download triggers, or dropdown toggles)
 		document.querySelectorAll('a[href^="#"]:not(#contact-btn-nav):not(#contact-btn-cta):not(.download-trigger):not(.dropdown-toggle)').forEach(anchor => {
 			anchor.addEventListener('click', function (e) {
@@ -523,28 +540,16 @@
 			
 			menuOverlay.addEventListener('click', toggleMenu);
 			
-			// Close menu when clicking on a link
+			// Close menu when clicking on a link (but not dropdown toggle)
 			navLinks.querySelectorAll('a:not(.dropdown-toggle)').forEach(link => {
-				link.addEventListener('click', () => {
+				link.addEventListener('click', (e) => {
+					// Only close menu, don't prevent default for normal links
 					menuToggle.classList.remove('active');
 					navLinks.classList.remove('active');
 					menuOverlay.classList.remove('active');
+					document.body.style.overflow = '';
 				});
 			});
-			
-			// Mobile dropdown toggle
-			const dropdownToggle = document.querySelector('.dropdown-toggle');
-			const dropdown = document.querySelector('.dropdown');
-			
-			if (dropdownToggle && dropdown) {
-				dropdownToggle.addEventListener('click', (e) => {
-					if (window.innerWidth <= 768) {
-						e.preventDefault();
-						e.stopPropagation();
-						dropdown.classList.toggle('active');
-					}
-				});
-			}
 		}
 
 		// Intersection Observer for animations
