@@ -1490,8 +1490,9 @@ p {
 	}
 	
 	.dropdown-menu {
-		position: static;
-		transform: none;
+		position: static !important;
+		transform: none !important;
+		left: auto !important;
 		opacity: 0;
 		visibility: hidden;
 		max-height: 0;
@@ -1500,9 +1501,11 @@ p {
 		border: none;
 		border-top: 1px solid var(--gray-700);
 		margin-top: 0;
+		margin-left: 0;
 		padding: 0;
 		min-width: auto;
 		max-width: none;
+		width: 100%;
 		background: var(--gray-700);
 		transition: opacity 0.3s ease, max-height 0.3s ease, padding 0.3s ease;
 	}
@@ -1541,8 +1544,14 @@ p {
 		aspect-ratio: 16 / 10;
 	}
 	
+	.hero-content {
+		align-items: flex-start;
+		padding-top: 2rem;
+	}
+	
 	.hero-content-inner {
 		padding: 0 1.5rem;
+		padding-top: 0;
 	}
 	
 	.hero-content h1 {
