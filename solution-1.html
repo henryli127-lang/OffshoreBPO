@@ -358,7 +358,7 @@
 				</div>
 			</div>
 			<div class="footer-bottom">
-				<p>© 2024 Company Logo. All rights reserved.</p>
+				<p>© 2025 EmiliaTeam. All rights reserved.</p>
 			</div>
 		</div>
 	</footer>
@@ -408,7 +408,7 @@
 	<!-- Contact Modal -->
 	<div id="consultation-modal" class="modal">
 		<div class="modal-content">
-			<span class="modal-close">&times;</span>
+			<span class="modal-close consultation-modal-close">&times;</span>
 			<h2 id="modal-title">Contact Us</h2>
 			<form id="consultation-form">
 				<div class="form-group">
@@ -420,8 +420,8 @@
 					<input type="email" id="email" name="email" required>
 				</div>
 				<div class="form-group">
-					<label for="phone">Phone Number *</label>
-					<input type="tel" id="phone" name="phone" required>
+					<label for="company">Company *</label>
+					<input type="text" id="company" name="company" required>
 				</div>
 				<div class="form-group">
 					<label for="country">Which country are you located in? *</label>
@@ -570,7 +570,7 @@
 		const consultationForm = document.getElementById('consultation-form');
 		const consultationSuccess = document.getElementById('consultation-success');
 		const modalTitle = document.getElementById('modal-title');
-		const modalClose = document.querySelector('.modal-close');
+		const modalClose = document.querySelector('.consultation-modal-close');
 		const modalCancel = document.querySelector('.modal-cancel');
 		const contactBtn = document.getElementById('contact-btn-nav');
 
@@ -582,6 +582,12 @@
 			consultationForm.style.display = 'block';
 			consultationSuccess.style.display = 'none';
 			consultationForm.reset();
+			// Reset submit button state
+			const submitBtn = consultationForm.querySelector('button[type="submit"]');
+			if (submitBtn) {
+				submitBtn.disabled = false;
+				submitBtn.textContent = 'Submit';
+			}
 		};
 
 		// Open modal for contact button
@@ -599,6 +605,12 @@
 			consultationForm.style.display = 'block';
 			consultationSuccess.style.display = 'none';
 			consultationForm.reset();
+			// Reset submit button state
+			const submitBtn = consultationForm.querySelector('button[type="submit"]');
+			if (submitBtn) {
+				submitBtn.disabled = false;
+				submitBtn.textContent = 'Submit';
+			}
 		};
 
 		if (modalClose) {
@@ -623,9 +635,10 @@
 			const formData = {
 				name: document.getElementById('name').value,
 				email: document.getElementById('email').value,
-				phone: document.getElementById('phone').value,
+				company: document.getElementById('company').value,
 				country: document.getElementById('country').value,
-				employees: document.getElementById('employees').value
+				employees: document.getElementById('employees').value,
+				notes: '' // Optional field for contact modal
 			};
 
 			const submitBtn = consultationForm.querySelector('button[type="submit"]');
@@ -647,6 +660,9 @@
 				if (response.ok) {
 					consultationForm.style.display = 'none';
 					consultationSuccess.style.display = 'block';
+					// Reset submit button state for next time
+					submitBtn.disabled = false;
+					submitBtn.textContent = originalText;
 				} else {
 					const errorMsg = result.error || `Server error (${response.status}): ${response.statusText}`;
 					console.error('Server error:', errorMsg);

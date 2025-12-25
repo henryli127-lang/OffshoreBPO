@@ -136,11 +136,11 @@ app.post('/api/consultation', async (req, res) => {
 	console.log('Received consultation request:', req.body);
 	
 	try {
-		const { name, email, phone, country, employees } = req.body;
+		const { name, email, company, country, employees, notes } = req.body;
 
 		// Validate required fields
-		if (!name || !email || !phone || !country || !employees) {
-			console.log('Validation failed - missing fields');
+		if (!name || !email || !company || !country || !employees) {
+			console.log('Validation failed - missing fields:', { name, email, company, country, employees });
 			return res.status(400).json({ error: 'All fields are required' });
 		}
 
@@ -149,9 +149,10 @@ app.post('/api/consultation', async (req, res) => {
 			id: Date.now().toString(),
 			name,
 			email,
-			phone,
+			company,
 			country,
 			employees,
+			notes: notes || '',
 			submittedAt: new Date().toISOString()
 		};
 
@@ -177,9 +178,10 @@ app.post('/api/consultation', async (req, res) => {
 					<h2>New Consultation Request</h2>
 					<p><strong>Name:</strong> ${name}</p>
 					<p><strong>Email:</strong> ${email}</p>
-					<p><strong>Phone:</strong> ${phone}</p>
+					<p><strong>Company:</strong> ${company}</p>
 					<p><strong>Country:</strong> ${country}</p>
 					<p><strong>Employees to Hire:</strong> ${employees}</p>
+					${notes ? `<p><strong>Notes:</strong> ${notes}</p>` : ''}
 					<p><strong>Submitted:</strong> ${new Date(submission.submittedAt).toLocaleString()}</p>
 				`
 			};

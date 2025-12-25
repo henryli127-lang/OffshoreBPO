@@ -499,6 +499,7 @@ p {
 	position: absolute;
 	right: 1.5rem;
 	top: 1.5rem;
+	z-index: 1001;
 	transition: color 0.2s ease;
 }
 
